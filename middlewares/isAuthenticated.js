@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 const isAuthenticated = async (req, res, next) => {
     try {
 
-        next();
 
         const token = req.cookies.token;
         if (!token) {
@@ -19,6 +18,7 @@ const isAuthenticated = async (req, res, next) => {
                 success:false
             })
         };
+        next();
         req.id = decode.userId;
     } catch (error) {
         console.log(error);
